@@ -1,0 +1,6 @@
+<?php 
+echo "Hola món<br>"; 
+echo "Sóc en sagojo.fjeclot.net"; 
+?>
+
+

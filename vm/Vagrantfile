@@ -1,0 +1,37 @@
+Vagrant.configure("2") do |config|
+  # Especificar la caja Debian Bullseye 64 bits
+  config.vm.box = "debian/bullseye64"
+
+  # Configurar el hostname de la máquina virtual
+  config.vm.hostname = "sagojo.fjeclot.net"  # Cambia noprcl por tus iniciales
+
+  # Nombre visible en VirtualBox
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "pj9f4a7.2_sagojo"  # Cambia noprcl por tus iniciales
+  end
+
+
+  # Asignar 2 CPUs y 2048MB de memoria
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 2
+    vb.memory = 2048
+  end
+
+  # Sincronizar carpeta 'codi' con '/var/www/html'
+  config.vm.synced_folder "../codi", "/var/www/html"
+
+  # Añadir interfaz de red con adaptador puente y IP via DHCP
+  config.vm.network "public_network", bridge: true
+
+  # Redirigir puertos 80 y 443 de la VM a 8000 y 8443 en la máquina host
+  config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "forwarded_port", guest: 443, host: 8443
+
+  # Provisión: actualización e instalación de paquetes
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y aptitude net-tools apache2 apache2-doc libapache2-mod-php php7.4 \
+      mariadb-server mariadb-client php7.4-mysql composer
+  SHELL
+end
+

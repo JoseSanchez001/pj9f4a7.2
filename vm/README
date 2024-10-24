@@ -1,0 +1,23 @@
+# Instrucciones para utilizar Vagrantfile
+
+## Iniciar la máquina virtual:
+1. Navega al directorio `vm` donde se encuentra el archivo Vagrantfile.
+2. Ejecuta el comando `vagrant up` para iniciar la máquina.
+
+## Acceder a la máquina virtual:
+- Ejecuta `vagrant ssh` para acceder a la máquina virtual.
+
+## Salir de la máquina virtual:
+- Usa `exit` para salir de la sesión SSH.
+
+## Detener la máquina virtual:
+- Ejecuta `vagrant halt` para detener la máquina sin destruirla.
+
+## Destruir la máquina virtual:
+- Ejecuta `vagrant destroy` para eliminar la máquina virtual.
+
+## Archivos del proyecto PHP:
+- Los archivos PHP del proyecto se encuentran en la carpeta `codi` de la máquina física, que está sincronizada con `/var/www/html` en la máquina virtual.
+
+## Acceso a la aplicación web:
+- Accede a la aplicación web desde el navegador en la dirección `http://localhost:8000` para HTTP o `https://localhost:8443` para HTTPS.
